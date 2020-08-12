@@ -37,13 +37,13 @@ class LinebotsController < ApplicationController
    end
    
    def search_and_create_message(input)
-     RaketenWebService.configure do |c|
-       c.application_id = ENV['RAKETEN_APPID']
-       c.affiliate_id = ENV['RAKETEN_AFID']
+     RakutenWebService.configure do |c|
+       c.application_id = ENV['RAKUTEN_APPID']
+       c.affiliate_id = ENV['RAKUTEN_AFID']
      end
      # 楽天の商品検索APIで画像がある商品の中で、入力値で検索して上から3件を取得する
      # 商品検索+ランキングでの取得はできないため標準の並び順で上から3件取得する
-     res = RaketenWebService::Ichiba::Item.search(keyword: input, hits: 3, imageFlag: 1)
+     res = RakutenWebService::Ichiba::Item.search(keyword: input, hits: 3, imageFlag: 1)
      item = []
      #取得したデータを使いやすいように配列に格納しなおす
      items = res.map{ |item| item}
